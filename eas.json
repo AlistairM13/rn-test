@@ -1,0 +1,22 @@
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk",
+        "ndk": "21.3.6528147"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease",
+        "ndk": "21.3.6528147"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {
+      "extends": "preview"
+    }
+  }
+}

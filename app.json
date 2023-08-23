@@ -29,11 +29,20 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.alistair1219.rntest"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
-    
+    },
+    "extra": {
+      "eas": {
+        "projectId": "151e9a60-4455-4579-87bf-6e3b2b9015a7"
+      }
+    },
+    "owner": "thealister"
   }
 }

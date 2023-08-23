@@ -5,7 +5,8 @@ import DraggableFlatList, { ScaleDecorator } from 'react-native-draggable-flatli
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function ImagePickerPage() {
+
+export default function ImagePickerPage({ navigation }) {
   const [images, setImages] = useState([]);
 
   const pickImage = async () => {
@@ -24,6 +25,7 @@ export default function ImagePickerPage() {
     dispatch({ type: "prev" })
     setImages(newImages)
   }
+
 
   const changeImage = (state, action) => {
     if (action.type === "next") {
@@ -67,20 +69,22 @@ export default function ImagePickerPage() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <View style={styles.container}>
+        <Ionicons name='close-outline' size={42} color={"black"} onPress={() => navigation.goBack()} style={{zIndex:10,position:"absolute", top:10, left:10}} />
+
         <View style={styles.imageContainer}>
           {images.length > 0 && <Image source={{ uri: images[state.currentImgIdx].uri }} style={styles.image} />}
           {images.length > 0 && (<View style={styles.buttonContainer}>
-            <Button onPress={() => dispatch({ type: "prev" })} title='Prev' />
-            <Button onPress={() => dispatch({ type: "next" })} title='Next' />
+            <Button onPress={() => dispatch({ type: "prev" })} title='Prev' color="black" />
+            <Button onPress={() => dispatch({ type: "next" })} title='Next' color="black" />
           </View>)}
           {!(images.length > 0) && (
             <View style={{ alignSelf: "center" }}>
-              <Button onPress={pickImage} title='Get images' />
+              <Button onPress={pickImage} title='Get images' color="black" />
             </View>
           )}
         </View>
         {images.length > 0 &&
-          <View style={{ flex: 3, padding: 4, backgroundColor: "black" }}>
+          <View style={{ flex: 3, padding: 4, backgroundColor: "black", borderTopColor: "gray", borderTopWidth: 1 }}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name='add-circle-outline' size={42} color={"white"} onPress={pickImage} />
               <Text style={styles.textContainer}>{`Image${state.currentImgIdx + 1}`}</Text>
